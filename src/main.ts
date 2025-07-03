@@ -1,4 +1,10 @@
-import { createApp } from "vue";
-import App from "./App.vue";
+import { createApp } from 'vue'
+import App from './App.vue'
+import router from './router'
 
-createApp(App).mount("#app");
+// 确保类型正确
+const app = createApp(App)
+app.use(router)
+app.mount('#app')
+
+export default app
