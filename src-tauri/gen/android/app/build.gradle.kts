@@ -1,4 +1,6 @@
 import java.util.Properties
+import java.io.FileInputStream
+
 
 plugins {
     id("com.android.application")
@@ -14,6 +16,20 @@ val tauriProperties = Properties().apply {
 }
 
 android {
+    signingConfigs {
+        create("release") {
+            val keystorePropertiesFile = rootProject.file("keystore.properties")
+            val keystoreProperties = Properties()
+            if (keystorePropertiesFile.exists()) {
+                keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+            }
+    
+            keyAlias = keystoreProperties["keyAlias"] as String
+            keyPassword = keystoreProperties["keyPassword"] as String
+            storeFile = file(keystoreProperties["storeFile"] as String)
+            storePassword = keystoreProperties["storePassword"] as String
+        }
+    }
     compileSdk = 34
     namespace = "com.abimusic.app"
     defaultConfig {
@@ -43,6 +59,9 @@ android {
                     .plus(getDefaultProguardFile("proguard-android-optimize.txt"))
                     .toList().toTypedArray()
             )
+        }
+        getByName("release") {
+            signingConfig = signingConfigs.getByName("release")
         }
     }
     kotlinOptions {
