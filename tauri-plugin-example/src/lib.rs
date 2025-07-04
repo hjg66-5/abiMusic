@@ -35,7 +35,7 @@ impl<R: Runtime, T: Manager<R>> crate::ExampleExt<R> for T {
 /// Initializes the plugin.
 pub fn init<R: Runtime>() -> TauriPlugin<R> {
   Builder::new("example")
-    .invoke_handler(tauri::generate_handler![commands::ping])
+    .invoke_handler(tauri::generate_handler![commands::ping, commands::toast])
     .setup(|app, api| {
       #[cfg(mobile)]
       let example = mobile::init(app, api)?;

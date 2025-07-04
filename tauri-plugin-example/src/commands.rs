@@ -11,3 +11,11 @@ pub(crate) async fn ping<R: Runtime>(
 ) -> Result<PingResponse> {
     app.example().ping(payload)
 }
+
+#[command]
+pub(crate) async fn toast<R: Runtime>(
+    app: AppHandle<R>,
+    payload: ToastRequest,
+) -> Result<()> {
+    app.example().toast(payload)
+}

@@ -31,4 +31,12 @@ impl<R: Runtime> Example<R> {
       .run_mobile_plugin("ping", payload)
       .map_err(Into::into)
   }
+
+  pub fn toast(&self, payload: ToastRequest) -> crate::Result<()> {
+    self.0
+        .run_mobile_plugin("toast", payload)
+        .map_err(Into::into)
+  }
 }
+
+

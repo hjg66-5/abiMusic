@@ -23,6 +23,7 @@
       </div>
         <!-- 手机移动端增加下载二维码跳转哔哩哔哩app进行扫一扫 -->
       <!-- <button class="retry-btn" @click="openBilibili">跳转哔哩哔哩扫一扫</button> -->
+       <button @click="showToast">Toast me</button>
       <div class="login-tips">
         <p>请使用B站APP扫描二维码登录</p>
       </div>
@@ -38,7 +39,11 @@ import QrcodeVue from 'qrcode.vue';
 import { invoke } from "@tauri-apps/api/core";
 import { Store } from '@tauri-apps/plugin-store';
 import { generateLoginQrCode } from '../../service/bilibili';
-
+import { ping } from "tauri-plugin-example-api";
+ 
+async function showToast() {
+    await ping("Hello!");
+}
 
 onBeforeMount(async () => {
     await invoke<string>('clear_cookies');
