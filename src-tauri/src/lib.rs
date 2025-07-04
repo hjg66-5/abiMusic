@@ -62,7 +62,7 @@ async fn poll_qr_code_status(app_handle: tauri::AppHandle, qrcode_key: &str) -> 
         }
 
         // 将 cookies 存储到 hjg152.json
-        let mut store = app_handle.store("hjg152.json")
+        let store = app_handle.store("hjg152.json")
             .map_err(|e| format!("打开存储失败: {}", e))?;
 
         let cookies_json: Value = serde_json::to_value(cookies)
@@ -88,11 +88,11 @@ async fn poll_qr_code_status(app_handle: tauri::AppHandle, qrcode_key: &str) -> 
 
 #[tauri::command]
 fn clear_cookies(app_handle: tauri::AppHandle) -> Result<(), String> {
-    let mut store = app_handle.store("hjg152.json")
+    let store = app_handle.store("hjg152.json")
             .map_err(|e| format!("打开存储失败: {}", e))?;
     store.delete("cookies");
     store.clear();
-    store.save();
+    let _ = store.save();
     Ok(())
 }
 
