@@ -22,6 +22,7 @@
         </div>
       </div>
         <!-- 手机移动端增加下载二维码跳转哔哩哔哩app进行扫一扫 -->
+      <!-- <button class="retry-btn" @click="openBilibili">跳转哔哩哔哩扫一扫</button> -->
       <div class="login-tips">
         <p>请使用B站APP扫描二维码登录</p>
       </div>
@@ -37,7 +38,6 @@ import QrcodeVue from 'qrcode.vue';
 import { invoke } from "@tauri-apps/api/core";
 import { Store } from '@tauri-apps/plugin-store';
 import { generateLoginQrCode } from '../../service/bilibili';
-
 
 
 onBeforeMount(async () => {
@@ -160,7 +160,7 @@ const startPolling = () => {
   };
 
 // 组件挂载时获取二维码
-onMounted(() => {
+onMounted(async () => {
   fetchQrCode();
 });
 

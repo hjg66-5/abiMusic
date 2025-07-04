@@ -29,6 +29,7 @@
         }
       ]
     },
-    "http:default"
+    "http:default",
+    "example:default"
   ]
 }
