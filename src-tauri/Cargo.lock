@@ -11,9 +11,9 @@ dependencies = [
  "serde_json",
  "tauri",
  "tauri-build",
- "tauri-plugin-example",
  "tauri-plugin-http",
  "tauri-plugin-log",
+ "tauri-plugin-openbiliscan",
  "tauri-plugin-opener",
  "tauri-plugin-shell",
  "tauri-plugin-store",
@@ -4348,16 +4348,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "tauri-plugin-example"
-version = "0.1.0"
-dependencies = [
- "serde",
- "tauri",
- "tauri-plugin",
- "thiserror 2.0.12",
-]
-
-[[package]]
 name = "tauri-plugin-fs"
 version = "2.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -4423,6 +4413,16 @@ dependencies = [
  "tauri-plugin",
  "thiserror 2.0.12",
  "time",
+]
+
+[[package]]
+name = "tauri-plugin-openbiliscan"
+version = "0.1.0"
+dependencies = [
+ "serde",
+ "tauri",
+ "tauri-plugin",
+ "thiserror 2.0.12",
 ]
 
 [[package]]

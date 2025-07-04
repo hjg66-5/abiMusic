@@ -39,7 +39,7 @@ import QrcodeVue from 'qrcode.vue';
 import { invoke } from "@tauri-apps/api/core";
 import { Store } from '@tauri-apps/plugin-store';
 import { generateLoginQrCode } from '../../service/bilibili';
-import { ping } from "tauri-plugin-example-api";
+import { ping } from "tauri-plugin-openbiliscan-api";
  
 async function showToast() {
     await ping("Hello!");

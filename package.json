@@ -19,7 +19,7 @@
     "qrcode.vue": "^3.6.0",
     "vue": "^3.5.13",
     "vue-router": "^4.5.1",
-    "tauri-plugin-example-api": "file:./tauri-plugin-example"
+    "tauri-plugin-openbiliscan-api": "file:./tauri-plugin-openbiliscan"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2",

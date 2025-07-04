@@ -30,6 +30,6 @@
       ]
     },
     "http:default",
-    "example:default"
+    "openbiliscan:default"
   ]
 }
