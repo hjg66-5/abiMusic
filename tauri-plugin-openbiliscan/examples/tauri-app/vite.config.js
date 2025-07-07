@@ -5,7 +5,16 @@ const host = process.env.TAURI_DEV_HOST;
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [svelte()],
+    plugins: [svelte(
+    {
+      compilerOptions: {
+        // 添加Svelte 5兼容性配置
+        compatibility: {
+          componentApi: 4
+        }
+      }
+    }
+  )],
 
   // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`
   // prevent Vite from obscuring rust errors

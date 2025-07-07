@@ -1,3 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 添加网络访问权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 添加写入外部存储权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 添加读取外部存储权限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!-- Android 13及以上需要的媒体文件权限 -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.WRITE_MEDIA_IMAGES" />
+
+    <application
+        android:requestLegacyExternalStorage="true"
+        android:exported="true">
+        <!-- 应用组件声明将在这里 -->
+    </application>
 </manifest>
