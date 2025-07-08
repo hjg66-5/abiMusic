@@ -5,6 +5,12 @@ use tauri_plugin_store::StoreExt;
 use serde_json::Value;
 use tauri_plugin_http::reqwest::ClientBuilder;
 
+#[cfg(desktop)]
+use tauri::WindowEvent;
+#[cfg(desktop)]
+use server::ServerMode;
+#[cfg(desktop)]
+mod server;
 
 #[derive(Debug, Serialize, Deserialize)]
 struct PollResponse {
@@ -139,6 +145,20 @@ pub fn run() {
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_http::init())
         .plugin(tauri_plugin_store::Builder::default().build())
+        .setup(move |app| {
+            app.handle().plugin(tauri_plugin_shell::init())?;
+            #[cfg(not(debug_assertions))] // 仅在非调试模式(发布环境)下执行
+            {
+                tauri::async_runtime::block_on(server::run(app, ServerMode::OneFile))?;
+            }
+            Ok(())
+        })
+        .on_window_event(|_window, event| match event {
+            WindowEvent::Destroyed => {
+                let _ = tauri::async_runtime::block_on(server::shutdown());
+            }
+            _ => {}
+        })
         .invoke_handler(tauri::generate_handler![
             greet,
             poll_qr_code_status,
