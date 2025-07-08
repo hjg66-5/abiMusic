@@ -105,8 +105,7 @@ class ExamplePlugin(private val activity: Activity) : Plugin(activity) {
      */
     private fun saveImageToGallery(bitmap: Bitmap): Uri? {
         val imagesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
-        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
-        val fileName = "abiMusic_Login_$timeStamp.jpg"
+        val fileName = "abiMusic_Login_QrCode.jpg"
         val file = File(imagesDir, fileName)
 
         try {
