@@ -14,11 +14,15 @@
     "@tauri-apps/plugin-http": "~2.5.0",
     "@tauri-apps/plugin-opener": "^2",
     "@tauri-apps/plugin-store": "^2.3.0",
+    "@tauri-apps/plugin-dialog": "^2.2.1",
     "crypto-js": "^4.2.0",
     "mitt": "^3.0.1",
     "qrcode.vue": "^3.6.0",
     "vue": "^3.5.13",
     "vue-router": "^4.5.1",
+    "dplayer": "^1.27.1",
+    "@vicons/ionicons5": "^0.13.0",
+    "naive-ui": "^2.41.0",
     "tauri-plugin-openbiliscan-api": "file:./tauri-plugin-openbiliscan"
   },
   "devDependencies": {
@@ -28,6 +32,7 @@
     "@vitejs/plugin-vue": "^5.2.1",
     "typescript": "~5.6.2",
     "vite": "^6.0.3",
-    "vue-tsc": "^2.1.10"
+    "vue-tsc": "^2.1.10",
+    "unplugin-auto-import": "^19.1.1"
   }
 }

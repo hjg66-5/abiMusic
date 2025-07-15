@@ -6,6 +6,7 @@ import SongDetail from '../views/mobile/SongDetail.vue'
 
 const routes: RouteRecordRaw[] = [
   { path: '/', name: 'desktop-home', component: DesktopHome, meta: { device: 'desktop' }},
+  { path: '/playList', name: 'desktop-playList', component: () => import('../views/desktop/layout/PlayList.vue'), meta: { device: 'desktop' }},
   { path: '/mobile', name: 'mobile-login', component: Login, meta: { device: 'mobile' }},
   { path: '/player', name: 'mobile-player', component: Player, meta: { device: 'mobile' }},
   { path: '/song-detail', name: 'mobile-song-detail', component: SongDetail, meta: { device: 'mobile' }}

@@ -78,7 +78,6 @@ let countdownTimer: number | null = null;
 let pollTimer: number | null = null;
 
 // 获取二维码
-
 interface PollResponse {
   code: number;
   data: {

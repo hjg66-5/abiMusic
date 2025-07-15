@@ -1,12 +1,30 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
+import path from 'path'
+import AutoImport from 'unplugin-auto-import/vite' //自动导入
 
 // @ts-expect-error process is a nodejs global
 const host = process.env.TAURI_DEV_HOST;
 
 // https://vitejs.dev/config/
 export default defineConfig(async () => ({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    AutoImport({
+      imports: [
+        'vue',
+        'vue-router',
+        'pinia',
+        { 'naive-ui': ['useDialog', 'useMessage', 'useNotification', 'useLoadingBar', 'useModal'] }
+      ],
+      dts: 'src/typings/auto-imports.d.ts'
+    }),
+  ],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src')
+    }
+  },
 
   // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`
   //

@@ -79,9 +79,9 @@ interface UserInfoResponse {
  * @returns 用户登录状态及基本信息（包含用户名、头像、等级等）
  */
 export const getUserInfo = async (cookie_SESSDATA?: string) => {
-  if (!cookie_SESSDATA) {
-    throw new AppException('未获取到有效cookie'+cookie_SESSDATA);
-  }
+  // if (!cookie_SESSDATA) {
+  //   throw new AppException('未获取到有效cookie'+cookie_SESSDATA);
+  // }
 
   console.log('开始请求用户信息...');
   try {
@@ -93,7 +93,7 @@ export const getUserInfo = async (cookie_SESSDATA?: string) => {
         'Accept': 'application/json, text/plain, */*',
         'Origin': 'https://www.bilibili.com',
         'Connection': 'keep-alive',
-        'Cookie': `SESSDATA=${cookie_SESSDATA}`
+        ...(cookie_SESSDATA ? {'Cookie': `SESSDATA=${cookie_SESSDATA}`} : {})
       },
       credentials: 'include', // 携带cookie以保持登录状态
     });
