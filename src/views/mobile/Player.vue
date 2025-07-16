@@ -97,8 +97,7 @@ import { getUserInfo,
 } from '../../service/bilibili';
 import { invoke } from "@tauri-apps/api/core";
 import { onBeforeMount,onMounted,ref} from 'vue';
-// import { AppException } from '../../utils/exception';
-import { eventBus } from '../..//utils/eventBus';
+import { useMitt } from '@/hooks/useMitt'
 
 const router = useRouter();
 const name = ref('');
@@ -134,6 +133,9 @@ const handleLogout = () => {
 //   router.push('/song-detail');
 // };
 
+// 添加音频播放逻辑
+const audioPlayer = ref<HTMLAudioElement | null>(null);
+
 
 onBeforeMount(async () => {
   const cookie_SESSDATA = await invoke<string>('get_cookie_from_store', { cookieName: 'SESSDATA' });
@@ -147,7 +149,12 @@ onMounted(async () => {
   const favoriteInfo = await getFavoriteInfo(4250885866);
   const detail =  await getFavoriteDetail(favoriteInfo.id!,20,1);
   songList.value.list = detail.videos || [];
-  eventBus.emit('songList', { data: songList.value.list });
+   // 默认加载第一首歌曲但不播放
+  if (songList.value.list.length > 0) {
+    playVideo(songList.value.list[0].bvid)
+  }
+  useMitt.emit('songList', { data: songList.value.list });
+  audioPlayer?.value?.pause();
 })
 
 
@@ -170,11 +177,13 @@ const playVideo = async (bvid: string) => {
     playerUrl.value = videoStreamUrl;
     duration.value=videoInfo.duration;
 
-       // 添加音频播放逻辑
-    const audioElement = ref<HTMLAudioElement | null>(null);
+    
     // 等待DOM更新后再播放
-    if (audioElement.value) {
-      audioElement.value.play().catch(error => {
+    await nextTick();
+    if (audioPlayer.value) {
+      // 加载音频资源
+      audioPlayer.value.load();
+      audioPlayer.value.play().catch(error => {
         console.error('音频播放失败:', error);
       });
     }
