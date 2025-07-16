@@ -28,6 +28,7 @@ log = "0.4.22"
 tauri-plugin-log = { version = "2.6.0", features = ["colored"] }
 tauri-plugin-shell = "2.2.0"
 tauri-plugin-openbiliscan = { path = "../tauri-plugin-openbiliscan/" }
+tauri-plugin-permissionsx = { path = "../tauri-plugin-permissionsx/" }
 
 [target.'cfg(not(any(target_os = "android", target_os = "ios")))'.dependencies]
 tauri-plugin-window-state = "2"

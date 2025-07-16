@@ -23,7 +23,8 @@
     "dplayer": "^1.27.1",
     "@vicons/ionicons5": "^0.13.0",
     "naive-ui": "^2.41.0",
-    "tauri-plugin-openbiliscan-api": "file:./tauri-plugin-openbiliscan"
+    "tauri-plugin-openbiliscan-api": "file:./tauri-plugin-openbiliscan",
+    "tauri-plugin-permissionsx-api": "file:./tauri-plugin-permissionsx"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2",

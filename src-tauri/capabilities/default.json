@@ -62,6 +62,8 @@
       ]
     },
     "http:default",
-    "openbiliscan:default"
+    "openbiliscan:default",
+    "permissionsx:allow-startPersistentNotify",
+    "permissionsx:allow-stopPersistentNotify"
   ]
 }

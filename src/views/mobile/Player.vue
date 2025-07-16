@@ -64,6 +64,10 @@
       <!-- 添加音频播放元素 -->
       <audio ref="audioPlayer" :src="playerUrl" controls ></audio>
     </main>
+    <form class="row" @submit.prevent="greet">
+      <input id="greet-input" v-model="name" placeholder="Enter a name..." />
+      <button type="submit">Greet</button>
+    </form>
 
     <!-- 歌曲列表 -->
     <div class="song-list">
@@ -96,8 +100,11 @@ import { getUserInfo,
   getFavoriteDetail 
 } from '../../service/bilibili';
 import { invoke } from "@tauri-apps/api/core";
-import { onBeforeMount,onMounted,ref} from 'vue';
+import { onBeforeMount,onMounted,ref,onUnmounted } from 'vue';
 import { useMitt } from '@/hooks/useMitt'
+import { startPersistentNotify,stopPersistentNotify} from "tauri-plugin-permissionsx-api";
+
+
 
 const router = useRouter();
 const name = ref('');
@@ -155,8 +162,17 @@ onMounted(async () => {
   }
   useMitt.emit('songList', { data: songList.value.list });
   audioPlayer?.value?.pause();
+  startPersistentNotify("阿哔音乐","听歌")
 })
 
+
+onUnmounted(() => {
+  stopPersistentNotify()
+});
+
+async function greet() {
+  startPersistentNotify("阿哔音乐","听歌")
+}
 
 const playVideo = async (bvid: string) => {
   currentVideo.value.bvid = bvid;
